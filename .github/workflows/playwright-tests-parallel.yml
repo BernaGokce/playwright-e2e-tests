@@ -1,0 +1,41 @@
+name: Playwright Tests Parallel
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        browser: [chromium, firefox]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Install Playwright browsers
+      run: npx playwright install
+
+    - name: Run Playwright tests
+      env:
+        ENV: production
+      run: npx playwright test --project=${{ matrix.browser }}
+
+    - name: Upload Playwright HTML Report
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: playwright-report-${{ matrix.browser }}
+        path: playwright-report/

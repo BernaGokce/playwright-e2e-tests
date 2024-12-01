@@ -1,0 +1,21 @@
+{
+  "name": "playwright-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:chrome": "npx playwright test --project=chromium --headed",
+    "test:chrome:hello-world": "npx playwright test tests/hello-world.spec.ts --project=chromium --headed",
+    "test:staging": "ENV=staging npx playwright test --project=chromium",
+    "test:production": "ENV=production npx playwright test",
+    "test:report": "npx playwright show-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "@types/node": "^22.10.1"
+  }
+}

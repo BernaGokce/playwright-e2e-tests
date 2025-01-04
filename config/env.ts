@@ -1,6 +1,7 @@
 const environments = {
     staging: 'https://staging.saucedemo.com/',
     production: 'https://www.saucedemo.com/',
+    baseURL: 'https://jsonplaceholder.typicode.com',
   };
   
   export const getEnvUrl = (env: string): string => {
